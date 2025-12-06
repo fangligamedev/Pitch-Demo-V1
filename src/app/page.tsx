@@ -52,9 +52,11 @@ export default function Home() {
                 {t.hero.cta_primary} <ArrowRight className="w-6 h-6" />
               </button>
             </Link>
-            <button className="px-10 py-5 glass-panel text-white text-xl font-bold rounded-full hover:bg-white/10 transition-colors flex items-center gap-2">
-              <Play className="w-6 h-6 fill-current" /> {t.hero.cta_secondary}
-            </button>
+            <Link href="/spatial">
+              <button className="px-10 py-5 glass-panel text-white text-xl font-bold rounded-full hover:bg-white/10 transition-colors flex items-center gap-2">
+                <Play className="w-6 h-6 fill-current" /> Try Spatial V2
+              </button>
+            </Link>
           </motion.div>
         </div>
       </section>
