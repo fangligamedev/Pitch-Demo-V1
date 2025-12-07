@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar";
 import { useLanguage } from '@/lib/i18n';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowRight, ChevronRight, Play, Star, Code } from 'lucide-react';
+import { ArrowRight, ChevronRight, Play, Star, Code, Sparkles, TrendingUp } from 'lucide-react';
 
 export default function Home() {
   const { t } = useLanguage();
@@ -33,14 +33,14 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
             className="text-6xl md:text-8xl font-bold tracking-tighter mb-8 max-w-5xl mx-auto"
           >
-            {t.hero.punchline_prefix} <span className="text-gradient-blue">{t.hero.punchline_suffix}</span>
+            Idea In. <span className="text-gradient-blue">Game Out.</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
-            className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto mb-12"
+            className="text-xl md:text-2xl text-gray-400 max-w-5xl mx-auto mb-12"
           >
-            {t.hero.subhead}
+            分钟级生成可变现互动内容。趋势 → 构建 → 推广，全链路 AI 操作系统。
           </motion.p>
 
           <motion.div
@@ -73,13 +73,9 @@ export default function Home() {
           align="left"
           color="blue"
         >
-          <div className="bg-gray-900 rounded-xl p-8 border border-white/10 h-[400px] relative overflow-hidden group">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 border-2 border-blue-500 rounded-full animate-[spin_4s_linear_infinite] border-t-transparent" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
-              <div className="text-4xl font-bold">92%</div>
-              <div className="text-sm text-blue-400">Match Rate</div>
-            </div>
+          <div className="bg-gray-900 rounded-xl p-0 border border-white/10 h-[400px] relative overflow-hidden group">
+            <img src="/images/trend_dashboard.png" alt="Trend Radar" className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 group-hover:scale-105" />
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent" />
           </div>
         </FeatureBlock>
 
@@ -92,19 +88,40 @@ export default function Home() {
           align="right"
           color="purple"
         >
-          <div className="bg-gray-900 rounded-xl p-8 border border-white/10 h-[400px] relative overflow-hidden flex flex-col gap-4">
-            <div className="p-4 bg-white/5 rounded-lg border border-white/5 flex items-center gap-4">
-              <div className="w-8 h-8 rounded bg-purple-500/20 flex items-center justify-center text-purple-400"><Star className="w-5 h-5" /></div>
-              <div className="h-2 w-32 bg-white/10 rounded" />
-            </div>
-            <div className="ml-8 p-4 bg-white/5 rounded-lg border border-white/5 flex items-center gap-4">
-              <div className="w-8 h-8 rounded bg-blue-500/20 flex items-center justify-center text-blue-400"><Code className="w-5 h-5" /></div>
-              <div className="h-2 w-24 bg-white/10 rounded" />
-            </div>
-            <div className="ml-16 p-4 bg-white/5 rounded-lg border border-white/5 flex items-center gap-4">
-              <div className="w-8 h-8 rounded bg-green-500/20 flex items-center justify-center text-green-400"><Play className="w-5 h-5" /></div>
-              <div className="h-2 w-40 bg-white/10 rounded" />
-            </div>
+          <div className="bg-[#0A0A0A] rounded-2xl p-8 border border-white/10 h-[400px] relative overflow-hidden flex flex-col justify-center gap-6">
+            {/* Ambient Background */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-[80px]" />
+
+            {/* Animated Cards */}
+            {[
+              { icon: <Star className="w-5 h-5 text-purple-400" />, label: "Asset Generation", color: "bg-purple-500/10", delay: 0 },
+              { icon: <Code className="w-5 h-5 text-blue-400" />, label: "Logic Synthesis", color: "bg-blue-500/10", delay: 0.2 },
+              { icon: <Play className="w-5 h-5 text-green-400" />, label: "Instant Playable", color: "bg-green-500/10", delay: 0.4 },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: item.delay, ease: "easeOut" }}
+                viewport={{ once: true }}
+                className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/5 backdrop-blur-md hover:bg-white/10 transition-colors cursor-default"
+              >
+                <div className={`w-10 h-10 rounded-lg ${item.color} flex items-center justify-center`}>
+                  {item.icon}
+                </div>
+                <div className="flex-1 flex flex-col gap-2">
+                  <span className="text-sm font-medium text-gray-200">{item.label}</span>
+                  <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                    <motion.div
+                      initial={{ x: '-100%' }}
+                      whileInView={{ x: '100%' }}
+                      transition={{ duration: 1.5, delay: item.delay + 0.5, repeat: Infinity, ease: "linear", repeatDelay: 1 }}
+                      className="h-full w-full bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                    />
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </FeatureBlock>
 
@@ -117,16 +134,45 @@ export default function Home() {
           align="left"
           color="green"
         >
-          <div className="bg-gray-900 rounded-xl p-6 border border-white/10 h-[400px] relative overflow-hidden flex items-end">
-            <div className="w-full flex items-end gap-2 h-64 px-4 pb-0">
-              <div className="w-1/5 bg-gray-800 rounded-t h-[40%]" />
-              <div className="w-1/5 bg-gray-800 rounded-t h-[60%]" />
-              <div className="w-1/5 bg-gray-800 rounded-t h-[30%]" />
-              <div className="w-1/5 bg-gray-800 rounded-t h-[50%]" />
-              <div className="w-1/5 bg-green-500 rounded-t h-[85%] relative">
-                <div className="absolute -top-8 left-1/2 -translate-x-1/2 text-green-400 font-bold">+240%</div>
-              </div>
-            </div>
+          <div className="bg-[#0A0A0A] rounded-2xl p-8 border border-white/10 h-[400px] relative overflow-hidden flex items-end justify-between gap-6">
+            {/* Ambient Background */}
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-green-500/5 rounded-full blur-[80px]" />
+
+            {[35, 55, 25, 45, 90].map((height, i) => {
+              const isWin = i === 4;
+              return (
+                <div key={i} className="flex-1 flex flex-col justify-end h-full relative group">
+                  {/* Floating Label for Winner */}
+                  {isWin && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.8 }}
+                      className="absolute -top-12 left-1/2 -translate-x-1/2 bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-xs font-bold border border-green-500/30 backdrop-blur-md flex items-center gap-1 whitespace-nowrap"
+                    >
+                      <TrendingUp className="w-3 h-3" /> +240%
+                    </motion.div>
+                  )}
+
+                  {/* Bar */}
+                  <motion.div
+                    initial={{ height: 4 }}
+                    whileInView={{ height: `${height}%` }}
+                    transition={{ duration: 1, delay: i * 0.1, type: "spring", stiffness: 50 }}
+                    viewport={{ once: true }}
+                    className={`w-full rounded-t-lg relative ${isWin
+                        ? 'bg-gradient-to-t from-green-600 to-green-400 shadow-[0_0_20px_rgba(34,197,94,0.3)]'
+                        : 'bg-white/5 border-t border-white/10 hover:bg-white/10 transition-colors'
+                      }`}
+                  >
+                    {/* Inner Shine Effect for Winner */}
+                    {isWin && (
+                      <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-50" />
+                    )}
+                  </motion.div>
+                </div>
+              );
+            })}
           </div>
         </FeatureBlock>
 
@@ -141,15 +187,15 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:h-[600px]">
-            <ShowcaseCard title="Cyber Run" author="@neo_dev" color="bg-blue-600" h="h-full" />
+            <ShowcaseCard title="Cyber Run" author="@neo_dev" image="/images/game_cyber.png" h="h-full" />
             <div className="flex flex-col gap-4 h-full">
-              <ShowcaseCard title="Pet Sim" author="@cute_games" color="bg-pink-600" h="h-1/2" />
-              <ShowcaseCard title="Space War" author="@mars_studio" color="bg-purple-600" h="h-1/2" />
+              <ShowcaseCard title="Pet Sim" author="@cute_games" image="/images/game_pet.png" h="h-1/2" />
+              <ShowcaseCard title="Space War" author="@mars_studio" image="/images/game_space.png" h="h-1/2" />
             </div>
-            <ShowcaseCard title="Dungeon AI" author="@rpg_fan" color="bg-red-900" h="h-full" />
+            <ShowcaseCard title="Dungeon AI" author="@rpg_fan" image="/images/game_dungeon.png" h="h-full" />
             <div className="flex flex-col gap-4 h-full">
-              <ShowcaseCard title="Puzzle X" author="@logic_master" color="bg-yellow-600" h="h-2/3" />
-              <ShowcaseCard title="Cooking Mama" author="@chef_ai" color="bg-orange-600" h="h-1/3" />
+              <ShowcaseCard title="Puzzle X" author="@logic_master" image="/images/game_puzzle.png" h="h-2/3" />
+              <ShowcaseCard title="Cooking Mama" author="@chef_ai" image="/images/game_cook.png" h="h-1/3" />
             </div>
           </div>
         </div>
@@ -189,13 +235,13 @@ function FeatureBlock({ badge, title, desc, align, color, children }: any) {
   )
 }
 
-function ShowcaseCard({ title, author, color, h }: any) {
+function ShowcaseCard({ title, author, image, h }: any) {
   return (
     <div className={`w-full ${h} rounded-xl overflow-hidden relative group cursor-pointer`}>
-      <div className={`absolute inset-0 ${color} opacity-80 transition-transform duration-500 group-hover:scale-110`} />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+      <img src={image} alt={title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
       <div className="absolute bottom-4 left-4">
-        <h3 className="font-bold text-lg">{title}</h3>
+        <h3 className="font-bold text-lg text-white group-hover:text-blue-400 transition-colors">{title}</h3>
         <p className="text-xs text-gray-300">{author}</p>
       </div>
     </div>
