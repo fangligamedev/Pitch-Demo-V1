@@ -61,8 +61,8 @@ export const DEMO_SCRIPT: DemoStep[] = [
         title: 'UI Design',
         description: 'Layout and style generation...',
         zone: 'builder',
-        duration: 12000,
-        asset: { type: 'video', url: '/assets/demo_v16/doki_dialogue.mp4', previewUrl: '/assets/demo_v16/ui_hud.png' },
+        duration: 3000,
+        asset: { type: 'image', url: '/assets/demo_v16/ui_hud.png' },
         uiAction: 'AUTO_PREVIEW'
     },
     {
